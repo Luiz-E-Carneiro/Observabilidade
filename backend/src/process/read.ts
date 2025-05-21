@@ -1,0 +1,49 @@
+import Processo from './../model/Processo';
+
+import { Request, Response } from "express";
+
+// Função para retornar todos os processos
+export async function process(req: Request, res: Response): Promise<void> {
+
+    Processo.find()
+        .then(processos => {
+            // Preferênica
+            // res.status(200).send(processos);
+            res.json({
+                status: 200,
+                data: processos
+            })
+        })
+        .catch(err => {
+            res.json({
+                status: 500,
+                message: err
+            })
+        })
+
+    // try {
+    //     const processos = await Processo.find();
+    //     res.status(200).send(processos);
+    // } catch (error: any) {
+    //     res.status(500).send(error.message || "Erro no servidor");
+    // }
+}
+
+// Função para encontrar um processo através do id
+export async function findProcess(req: Request, res: Response): Promise<void> {
+    const id = req.params.id;
+
+    Processo.findById(id)
+        .then(profile => {
+            res.json({
+                status: 200,
+                data: profile
+            })
+        })
+        .catch(err => {
+            res.json({
+                status: 500,
+                message: 'Processo ' + id + ' não encontrado'
+            })
+        })
+}
