@@ -7,7 +7,7 @@ export default async function createProcess(req: Request, res: Response): Promis
         const { system_id, process_name, steps } = req.body;
 
         if (!system_id || !process_name || !Array.isArray(steps)) {
-            res.status(400).json({ error: 'Invalid or incorrect data.' });
+            res.status(400).json({ error: 'Invalid or incorrect data' });
             return;
         }
 
@@ -25,7 +25,6 @@ export default async function createProcess(req: Request, res: Response): Promis
         });
 
     } catch (error: any) {
-        console.error('Erro ao criar processo:', error);
-        res.status(500).json({ error: 'Erro interno do servidor' });
+        res.status(500).json({ error: `Error in creating process: ${error}` });
     }
 }

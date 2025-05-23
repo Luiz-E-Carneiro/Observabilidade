@@ -28,7 +28,6 @@ export default async function updateProcess(req: Request, res: Response): Promis
       timestamp: updated.updatedAt
     });
   } catch (error: any) {
-    console.error('Erro ao atualizar processo:', error);
-    res.status(500).json({ error: 'Erro interno do servidor' });
+    res.status(500).json( `Erro ao atualizar processo: ${error}`);
   }
 }
