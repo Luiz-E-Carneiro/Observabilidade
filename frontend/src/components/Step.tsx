@@ -1,6 +1,6 @@
+import { CheckCircle, XCircle, CircleSlash2, ChevronDown, ChevronRight } from 'lucide-react';
 import { useState } from 'react';
 import { StepType } from '@/types';
-import { CheckCircle, XCircle, Circle, ChevronDown, ChevronRight } from 'lucide-react';
 
 export default function Step({ step }: { step: StepType }) {
   const [open, setOpen] = useState(false);
@@ -8,11 +8,11 @@ export default function Step({ step }: { step: StepType }) {
   const getIcon = () => {
     if (step.complete) return <CheckCircle className="text-green-500" />;
     if (step.error) return <XCircle className="text-red-500" />;
-    return <Circle className="text-gray-400" />;
+    return <CircleSlash2 className="text-gray-400" />;
   };
 
   return (
-    <li className="border rounded p-2">
+    <li className="p-2 hover:bg-[#7575753a] transition-colors duration-200">
       <div className="flex justify-between items-center cursor-pointer" onClick={() => setOpen(!open)}>
         <div className="flex items-center gap-2">
           {getIcon()}
@@ -22,7 +22,7 @@ export default function Step({ step }: { step: StepType }) {
       </div>
 
       {open && (
-        <div className="text-sm text-gray-600 mt-2 pl-6">
+        <div className="text-sm text-[#c5c3c3] mt-2 pl-8">
           {step.detail}
         </div>
       )}

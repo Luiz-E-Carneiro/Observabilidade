@@ -14,38 +14,53 @@ export default function Header({ onFilter }: Props) {
     onFilter(newFilters);
   };
 
+  const handleClear = () => {
+    const emptyFilters = { _id: '', sys_id: '', name: '' };
+    setFilters(emptyFilters);
+    onFilter(emptyFilters);
+  };
+
   return (
-    <header className="p-4 bg-white shadow mb-6">
-      <form className="grid grid-cols-3 gap-4">
+    <header className="p-4 bg-[var(--primary)] shadow mb-6 rounded">
+      <form className="grid grid-cols-4 gap-4 items-end">
         <div>
-          <label htmlFor="_id" className="block text-sm font-medium">ID:</label>
+          <label htmlFor="_id" className="block text-sm text-[var(--foreground)] font-bold">ID:</label>
           <input
             type="text"
             name="_id"
-            className="w-full border rounded px-2 py-1"
+            className="w-full border-b-2 border-b-stone-500 rounded px-2 py-1 mt-1 bg-[var(--background)] text-[var(--foreground)]"
             onChange={handleChange}
             value={filters._id}
           />
         </div>
         <div>
-          <label htmlFor="sys_id" className="block text-sm font-medium">System ID:</label>
+          <label htmlFor="sys_id" className="block text-sm text-[var(--foreground)] font-bold">System ID:</label>
           <input
             type="text"
             name="sys_id"
-            className="w-full border rounded px-2 py-1"
+            className="w-full border-b-2 border-b-stone-500 rounded px-2 py-1 mt-1 bg-[var(--background)] text-[var(--foreground)]"
             onChange={handleChange}
             value={filters.sys_id}
           />
         </div>
         <div>
-          <label htmlFor="name" className="block text-sm font-medium">Process Name:</label>
+          <label htmlFor="name" className="block text-sm text-[var(--foreground)] font-bold">Process Name:</label>
           <input
             type="text"
             name="name"
-            className="w-full border rounded px-2 py-1"
+            className="w-full border-b-2 border-b-stone-500 rounded px-2 py-1 mt-1 bg-[var(--background)] text-[var(--foreground)]"
             onChange={handleChange}
             value={filters.name}
           />
+        </div>
+        <div>
+          <button
+            type="button"
+            onClick={handleClear}
+            className="px-4 py-2 bg-[#d32b32] text-white rounded hover:opacity-90"
+          >
+            Limpar filtros
+          </button>
         </div>
       </form>
     </header>

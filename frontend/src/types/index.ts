@@ -6,7 +6,7 @@ export type StepType = {
 };
 
 export type ProcessType = {
-  id: string;
+  _id: string;
   system_id: string;
   process_name: string;
   steps: StepType[];
