@@ -14,18 +14,18 @@ type Props = {
 export default function Header({ onFilter }: Props) {
   const [filters, setFilters] = useState({ _id: '', sys_id: '', name: '' });
 
-    /**
-   * Atualiza os filtros locais e chama a função de filtro do componente pai.
-   *
-   * @param {React.ChangeEvent<HTMLInputElement>} e - Evento de mudança dos inputs.
-   */
+  /**
+ * Atualiza os filtros locais e chama a função de filtro do componente pai.
+ *
+ * @param {React.ChangeEvent<HTMLInputElement>} e - Evento de mudança dos inputs.
+ */
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     const newFilters = { ...filters, [name]: value };
     setFilters(newFilters);
     onFilter(newFilters);
   };
-  
+
   /**
    * Limpa todos os campos de filtro e aplica o filtro vazio.
    */
@@ -37,8 +37,8 @@ export default function Header({ onFilter }: Props) {
 
   return (
     <header className="p-4 bg-[var(--primary)] shadow mb-6 rounded">
-      <form className="grid grid-cols-4 gap-4 items-end">
-        <div>
+      <form className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-12 gap-4 items-end">
+        <div className="lg:col-span-3">
           <label htmlFor="_id" className="block text-sm text-[var(--foreground)] font-bold">ID:</label>
           <input
             type="text"
@@ -48,7 +48,7 @@ export default function Header({ onFilter }: Props) {
             value={filters._id}
           />
         </div>
-        <div>
+        <div className="lg:col-span-3">
           <label htmlFor="sys_id" className="block text-sm text-[var(--foreground)] font-bold">System ID:</label>
           <input
             type="text"
@@ -58,7 +58,7 @@ export default function Header({ onFilter }: Props) {
             value={filters.sys_id}
           />
         </div>
-        <div>
+        <div className="lg:col-span-3">
           <label htmlFor="name" className="block text-sm text-[var(--foreground)] font-bold">Process Name:</label>
           <input
             type="text"
@@ -68,11 +68,11 @@ export default function Header({ onFilter }: Props) {
             value={filters.name}
           />
         </div>
-        <div>
+        <div className="lg:col-span-3 flex lg:justify-end md:justify-normal sm:justify-end items-start">
           <button
             type="button"
             onClick={handleClear}
-            className="px-4 py-2 bg-[#d32b32] text-white rounded hover:opacity-90"
+            className="px-4 py-2 bg-[#d32b32] text-white rounded hover:opacity-90 w-full sm:w-auto"
           >
             Limpar filtros
           </button>

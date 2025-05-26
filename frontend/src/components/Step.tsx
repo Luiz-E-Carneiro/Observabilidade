@@ -23,17 +23,21 @@ export default function Step({ step }: { step: StepType }) {
   };
 
   return (
-    <li className="p-2 hover:bg-[#7575753a] transition-colors duration-200">
-      <div className="flex justify-between items-center cursor-pointer" onClick={() => setOpen(!open)}>
-        <div className="flex items-center gap-2">
+    <li className="p-2 hover:bg-[#7575753a] transition-colors duration-200 rounded-md">
+      <div
+        className="flex flex-row justify-between items-start sm:items-center cursor-pointer gap-2"
+        onClick={() => setOpen(!open)}>
+        <div className="flex items-center gap-2 flex-wrap">
           {getIcon()}
-          <span className="font-medium">{step.name}</span>
+          <span className="font-medium text-sm sm:text-base break-words">{step.name}</span>
         </div>
-        {open ? <ChevronDown size={18} /> : <ChevronRight size={18} />}
+        <div className="sm:ml-auto">
+          {open ? <ChevronDown size={18} /> : <ChevronRight size={18} />}
+        </div>
       </div>
 
       {open && (
-        <div className="text-sm text-[#c5c3c3] mt-2 pl-8">
+        <div className="text-sm text-[#c5c3c3] mt-2 pl-8 break-words">
           {step.detail}
         </div>
       )}

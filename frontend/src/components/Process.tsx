@@ -21,14 +21,20 @@ export default function Process({ processo }: Props): JSX.Element {
   return (
     <li className="bg-[#ffffff14] hover:bg-[#ffffff23] transition-colors duration-200 text-[#ededed] p-4">
       <div
-        className="flex justify-between items-center cursor-pointer"
+        className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 sm:gap-0 cursor-pointer"
         onClick={() => setOpen(!open)}
       >
         <div>
-          <p className="text-sm font-bold text-[#949494]">{processo.system_id}</p>
-          <h2 className="text-lg font-semibold">{processo.process_name}</h2>
+          <p className="text-xs sm:text-sm font-bold text-[#949494]">{processo.system_id}</p>
+          <h2 className="text-base sm:text-lg font-semibold">{processo.process_name}</h2>
         </div>
-        {open ? <ChevronUp className="text-white" /> : <ChevronDown className="text-white" />}
+        <div className="ml-auto">
+          {open ? (
+            <ChevronUp className="text-white" />
+          ) : (
+            <ChevronDown className="text-white" />
+          )}
+        </div>
       </div>
       {open && (
         <ul className="mt-4 space-y-2">
