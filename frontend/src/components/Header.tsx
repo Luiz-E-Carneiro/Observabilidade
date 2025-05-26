@@ -4,16 +4,31 @@ type Props = {
   onFilter: (filters: { _id: string; sys_id: string; name: string }) => void;
 };
 
+/**
+ * Componente de cabeçalho com campos de filtro para processos.
+ *
+ * @param {Object} props
+ * @param {(filters: { _id: string; sys_id: string; name: string }) => void} props.onFilter
+ * Função chamada sempre que os filtros forem atualizados.
+ */
 export default function Header({ onFilter }: Props) {
   const [filters, setFilters] = useState({ _id: '', sys_id: '', name: '' });
 
+    /**
+   * Atualiza os filtros locais e chama a função de filtro do componente pai.
+   *
+   * @param {React.ChangeEvent<HTMLInputElement>} e - Evento de mudança dos inputs.
+   */
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     const newFilters = { ...filters, [name]: value };
     setFilters(newFilters);
     onFilter(newFilters);
   };
-
+  
+  /**
+   * Limpa todos os campos de filtro e aplica o filtro vazio.
+   */
   const handleClear = () => {
     const emptyFilters = { _id: '', sys_id: '', name: '' };
     setFilters(emptyFilters);

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { JSX, useState } from 'react';
 import { ProcessType } from '@/types';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import Step from './Step';
@@ -7,7 +7,15 @@ type Props = {
   processo: ProcessType;
 };
 
-export default function Process({ processo }: Props) {
+/**
+ * Componente que renderiza um processo com seu nome, sistema e lista de steps.
+ * Permite expandir e recolher os steps clicando no cabeçalho do processo.
+ *
+ * @param {Props} props - Objeto contendo os dados do processo.
+ * @param {ProcessType} props.processo - O processo a ser exibido, contendo sistema, nome e steps.
+ * @returns {JSX.Element} Elemento de lista com informações do processo e seus steps (se abertos).
+ */
+export default function Process({ processo }: Props): JSX.Element {
   const [open, setOpen] = useState(false);
 
   return (

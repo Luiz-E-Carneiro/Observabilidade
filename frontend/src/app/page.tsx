@@ -7,6 +7,12 @@ import Process from '@/components/Process';
 import Header from '@/components/Header';
 import React from 'react';
 
+/**
+ * Página principal que exibe uma lista de processos com filtro dinâmico.
+ * 
+ * - Busca os processos do backend ao montar.
+ * - Permite ao usuário filtrar por ID, system_id e nome do processo.
+ */
 export default function Home() {
   const [processes, setProcesses] = useState<ProcessType[]>([]);
   const [filtered, setFiltered] = useState<ProcessType[]>([]); 
@@ -18,6 +24,14 @@ export default function Home() {
     });
   }, []);
 
+  /**
+   * Aplica filtros à lista original de processos com base nos critérios informados.
+   *
+   * @param {Object} filters - Objeto com os critérios de filtragem.
+   * @param {string} filters._id - Filtro por ID do processo.
+   * @param {string} filters.sys_id - Filtro por System ID.
+   * @param {string} filters.name - Filtro por nome do processo.
+   */
   const applyFilters = (filters: { _id: string; sys_id: string; name: string }) => {
     const filteredList = processes.filter((p) => {
       return (

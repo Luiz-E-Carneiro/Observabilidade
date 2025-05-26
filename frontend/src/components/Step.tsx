@@ -2,9 +2,20 @@ import { CheckCircle, XCircle, CircleSlash2, ChevronDown, ChevronRight } from 'l
 import { useState } from 'react';
 import { StepType } from '@/types';
 
+/**
+ * Componente que renderiza um step de processo com nome, ícone de status e detalhe expandível.
+ *
+ * @param {Object} props
+ * @param {StepType} props.step - Objeto com dados do step (nome, status, detalhes).
+ */
 export default function Step({ step }: { step: StepType }) {
   const [open, setOpen] = useState(false);
 
+  /**
+   * Retorna o ícone correspondente ao status do step.
+   *
+   * @returns {JSX.Element} Ícone de status (completo, erro ou neutro (após um erro)).
+   */
   const getIcon = () => {
     if (step.complete) return <CheckCircle className="text-green-500" />;
     if (step.error) return <XCircle className="text-red-500" />;

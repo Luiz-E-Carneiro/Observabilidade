@@ -2,6 +2,7 @@ import mongoose, { Document, Schema } from "mongoose";
 import { StepSchema, IStep } from "./Step";
 
 export interface IProcess extends Document {
+  // _id: mongoose.Types.ObjectId;
   system_id: string;
   process_name: string;
   steps: IStep[];

@@ -2,6 +2,17 @@ import { Request, Response } from 'express';
 import mongoose from 'mongoose';
 import Processo from './../model/Processo';
 
+/**
+ * Atualiza um processo existente pelo ID fornecido.
+ *
+ * @param {Request} req - Objeto da requisição contendo o parâmetro `id` e o corpo com os dados do processo.
+ * @param {Response} res - Objeto da resposta para enviar confirmação ou erro.
+ * @returns {Promise<void>} - Retorna uma Promise que resolve sem valor, enviando a resposta HTTP.
+ *
+ * @throws Retorna status 400 se o ID for inválido.
+ * @throws Retorna status 404 se o processo não for encontrado.
+ * @throws Retorna status 500 em caso de erro no servidor.
+ */
 export default async function updateProcess(req: Request, res: Response): Promise<void> {
   const { id } = req.params;
   const { system_id, process_name, steps } = req.body;
