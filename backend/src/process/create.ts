@@ -27,8 +27,9 @@ export default async function createProcess(req: Request, res: Response): Promis
         });
 
         const processoSalvo = await novoProcesso.save();
-
+        
         res.status(200).json({
+            id: processoSalvo.id,
             message: 'Processo criado com sucesso',
             timestamp: processoSalvo.createdAt
         });

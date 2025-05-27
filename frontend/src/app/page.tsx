@@ -44,7 +44,7 @@ export default function Home() {
   };
 
   return (
-    <main className="px-6 py-4 min-h-screen bg-[#1F1F1F] text-[#ededed]">
+    <main className="px-6 py-4 min-h-screen bg-[var(--background)]">
       <Header onFilter={applyFilters} />
       <ul className="">
         {filtered.map((p) => (

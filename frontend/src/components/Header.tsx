@@ -39,31 +39,31 @@ export default function Header({ onFilter }: Props) {
     <header className="p-4 bg-[var(--primary)] shadow mb-6 rounded">
       <form className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-12 gap-4 items-end">
         <div className="lg:col-span-3">
-          <label htmlFor="_id" className="block text-sm text-[var(--foreground)] font-bold">ID:</label>
+          <label htmlFor="_id" className="block text-sm text-[var(--main_text)] font-bold">ID:</label>
           <input
             type="text"
             name="_id"
-            className="w-full border-b-2 border-b-stone-500 rounded px-2 py-1 mt-1 bg-[var(--background)] text-[var(--foreground)]"
+            className="w-full border-b-2 border-b-stone-500 rounded px-2 py-1 mt-1 bg-[var(--foreground)] text-[var(--main_text)]"
             onChange={handleChange}
             value={filters._id}
           />
         </div>
         <div className="lg:col-span-3">
-          <label htmlFor="sys_id" className="block text-sm text-[var(--foreground)] font-bold">System ID:</label>
+          <label htmlFor="sys_id" className="block text-sm text-[var(--main_text)] font-bold">System ID:</label>
           <input
             type="text"
             name="sys_id"
-            className="w-full border-b-2 border-b-stone-500 rounded px-2 py-1 mt-1 bg-[var(--background)] text-[var(--foreground)]"
+            className="w-full border-b-2 border-b-stone-500 rounded px-2 py-1 mt-1 bg-[var(--foreground)] text-[var(--main_text)]"
             onChange={handleChange}
             value={filters.sys_id}
           />
         </div>
         <div className="lg:col-span-3">
-          <label htmlFor="name" className="block text-sm text-[var(--foreground)] font-bold">Process Name:</label>
+          <label htmlFor="name" className="block text-sm text-[var(--main_text)] font-bold">Process Name:</label>
           <input
             type="text"
             name="name"
-            className="w-full border-b-2 border-b-stone-500 rounded px-2 py-1 mt-1 bg-[var(--background)] text-[var(--foreground)]"
+            className="w-full border-b-2 border-b-stone-500 rounded px-2 py-1 mt-1 bg-[var(--foreground)] text-[var(--main_text)]"
             onChange={handleChange}
             value={filters.name}
           />
@@ -72,7 +72,7 @@ export default function Header({ onFilter }: Props) {
           <button
             type="button"
             onClick={handleClear}
-            className="px-4 py-2 bg-[#d32b32] text-white rounded hover:opacity-90 w-full sm:w-auto"
+            className="px-4 py-2 bg-[var(--accent)] text-white rounded hover:opacity-90 hover:cursor-pointer w-full sm:w-auto"
           >
             Limpar filtros
           </button>

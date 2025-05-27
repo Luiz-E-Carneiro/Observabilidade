@@ -19,13 +19,13 @@ export default function Process({ processo }: Props): JSX.Element {
   const [open, setOpen] = useState(false);
 
   return (
-    <li className="bg-[#ffffff14] hover:bg-[#ffffff23] transition-colors duration-200 text-[#ededed] p-4">
+    <li className="bg-[#ffffff14] hover:bg-[#ffffff23] transition-colors duration-200 text-[var(--main_text)] p-4">
       <div
         className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 sm:gap-0 cursor-pointer"
         onClick={() => setOpen(!open)}
       >
         <div>
-          <p className="text-xs sm:text-sm font-bold text-[#949494]">{processo.system_id}</p>
+          <p className="text-xs sm:text-sm font-bold text-[var(--second_text)]">{processo.system_id}</p>
           <h2 className="text-base sm:text-lg font-semibold">{processo.process_name}</h2>
         </div>
         <div className="ml-auto">

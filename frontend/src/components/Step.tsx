@@ -14,7 +14,7 @@ export default function Step({ step }: { step: StepType }) {
   /**
    * Retorna o ícone correspondente ao status do step.
    *
-   * @returns {JSX.Element} Ícone de status (completo, erro ou neutro (após um erro)).
+   * @returns {JSX.Element} Ícone de status (completo, erro ou neutro).
    */
   const getIcon = () => {
     if (step.complete) return <CheckCircle className="text-green-500" />;
@@ -37,7 +37,7 @@ export default function Step({ step }: { step: StepType }) {
       </div>
 
       {open && (
-        <div className="text-sm text-[#c5c3c3] mt-2 pl-8 break-words">
+        <div className="text-md text-[var(--second_text)] mt-2 pl-8 break-words">
           {step.detail}
         </div>
       )}
