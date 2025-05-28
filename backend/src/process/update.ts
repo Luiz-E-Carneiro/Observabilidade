@@ -30,7 +30,7 @@ export default async function updateProcess(req: Request, res: Response): Promis
     );
 
     if (!updated) {
-      res.status(404).json({ error: 'Process not found' });
+      res.status(404).json({ error: 'Processo não encontrado' });
       return;
     }
 

@@ -17,6 +17,19 @@ type Props = {
  */
 export default function Process({ processo }: Props): JSX.Element {
   const [open, setOpen] = useState(false);
+  console.log(processo);
+
+  function formatDate(dateString: string): string {
+    const date = new Date(dateString);
+    return date.toLocaleString('pt-BR', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+      timeZone: 'America/Sao_Paulo'
+    });
+  }
 
   return (
     <li className="bg-[#ffffff14] hover:bg-[#ffffff23] transition-colors duration-200 text-[var(--main_text)] p-4">
@@ -27,6 +40,7 @@ export default function Process({ processo }: Props): JSX.Element {
         <div>
           <p className="text-xs sm:text-sm font-bold text-[var(--second_text)]">{processo.system_id}</p>
           <h2 className="text-base sm:text-lg font-semibold">{processo.process_name}</h2>
+          <span>{formatDate(processo.updatedAt)}</span>
         </div>
         <div className="ml-auto">
           {open ? (

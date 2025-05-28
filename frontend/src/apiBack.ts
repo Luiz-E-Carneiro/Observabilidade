@@ -25,14 +25,16 @@ class APIBack {
    * Busca todos os processos do backend.
    * @returns {Promise<any[]>} Lista dos processos ou array vazio em caso de erro.
    */
-  async getAllProcesses() {
+  async getAllProcesses(filters: { _id?: string; sys_id?: string; name?: string } = {}) {
     try {
-      const res = await fetch(this.ENV_HOST + this.ROTAS.PROCESSOS, {
-        headers: this.HEADERS,
-      });
+      const query = new URLSearchParams(filters).toString();
+      const res = await fetch(
+        `${this.ENV_HOST}${this.ROTAS.PROCESSOS}${query ? `?${query}` : ''}`,
+        { headers: this.HEADERS }
+      );
       return await res.json();
-    } catch (e) {
-      console.error('Erro ao buscar processos:', e);
+    } catch (error) {
+      console.error('Erro ao buscar processos:', error);
       return [];
     }
   }
@@ -48,8 +50,8 @@ class APIBack {
         headers: this.HEADERS,
       });
       return await res.json();
-    } catch (e) {
-      console.error('Erro ao buscar processo:', e);
+    } catch (error) {
+      console.error('Erro ao buscar processo:', error);
       return null;
     }
   }

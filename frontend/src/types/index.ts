@@ -11,4 +11,5 @@ export type ProcessType = {
   process_name: string;
   steps: StepType[];
   timestamp: string;
+  updatedAt: string;
 };

@@ -32,15 +32,9 @@ export default function Home() {
    * @param {string} filters.sys_id - Filtro por System ID.
    * @param {string} filters.name - Filtro por nome do processo.
    */
-  const applyFilters = (filters: { _id: string; sys_id: string; name: string }) => {
-    const filteredList = processes.filter((p) => {
-      return (
-        (!filters._id || p._id.toString().includes(filters._id)) &&
-        (!filters.sys_id || p.system_id.toLowerCase().includes(filters.sys_id.toLowerCase())) &&
-        (!filters.name || p.process_name.toLowerCase().includes(filters.name.toLowerCase()))
-      );
-    });
-    setFiltered(filteredList);
+  const applyFilters = async (filters: { _id: string; sys_id: string; name: string }) => {
+    const data = await apiBack.getAllProcesses(filters);
+    setFiltered(data);    
   };
 
   return (
