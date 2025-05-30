@@ -34,7 +34,7 @@ export default function Home() {
    */
   const applyFilters = async (filters: { _id: string; sys_id: string; name: string }) => {
     const data = await apiBack.getAllProcesses(filters);
-    setFiltered(data);    
+    setFiltered(data);
   };
 
   return (

@@ -12,7 +12,6 @@ export interface IProcess extends Document {
 
 const processSchema = new Schema<IProcess>(
   {
-    
     system_id: { type: String, required: true },
     process_name: { type: String, required: true },
     steps: { type: [StepSchema], required: true }

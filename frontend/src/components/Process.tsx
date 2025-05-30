@@ -17,18 +17,32 @@ type Props = {
  */
 export default function Process({ processo }: Props): JSX.Element {
   const [open, setOpen] = useState(false);
-  console.log(processo);
 
-  function formatDate(dateString: string): string {
-    const date = new Date(dateString);
-    return date.toLocaleString('pt-BR', {
-      day: '2-digit',
-      month: '2-digit',
-      year: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit',
-      timeZone: 'America/Sao_Paulo'
-    });
+  function formatDate(): string {
+    if (!processo.steps || processo.steps.length === 0) {
+      return '-';
+    }
+
+    const lastStep = processo.steps[processo.steps.length - 1];
+
+    if (lastStep.complete && !lastStep.error) {
+      const inicialDate = new Date(processo.createdAt);
+      const finalDate = new Date(lastStep.updatedAt);
+
+      const diffInMs = finalDate.getTime() - inicialDate.getTime();
+
+      const hours = Math.floor(diffInMs / (1000 * 60 * 60));
+      const minutes = Math.floor((diffInMs % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diffInMs % (1000 * 60)) / 1000);
+
+      return [
+        String(hours).padStart(2, '0'),
+        String(minutes).padStart(2, '0'),
+        String(seconds).padStart(2, '0')
+      ].join(':');
+    }
+
+    return 'N/F';
   }
 
   return (
@@ -38,9 +52,11 @@ export default function Process({ processo }: Props): JSX.Element {
         onClick={() => setOpen(!open)}
       >
         <div>
-          <p className="text-xs sm:text-sm font-bold text-[var(--second_text)]">{processo.system_id}</p>
+          <p className="text-xs sm:text-sm font-bold text-[var(--second_text)]">
+            {processo.system_id}
+          </p>
           <h2 className="text-base sm:text-lg font-semibold">{processo.process_name}</h2>
-          <span>{formatDate(processo.updatedAt)}</span>
+          <p>{formatDate()}</p>
         </div>
         <div className="ml-auto">
           {open ? (

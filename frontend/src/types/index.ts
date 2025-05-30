@@ -3,6 +3,9 @@ export type StepType = {
   detail: string;
   complete: boolean;
   error: boolean;
+  timestamp: string;
+  updatedAt: string;
+  createdAt: string;
 };
 
 export type ProcessType = {
@@ -12,4 +15,5 @@ export type ProcessType = {
   steps: StepType[];
   timestamp: string;
   updatedAt: string;
+  createdAt: string;
 };
