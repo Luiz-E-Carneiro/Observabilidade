@@ -5,10 +5,9 @@ class APIBack {
   // Rotas usadas pela API
   ROTAS = {
     PROCESSOS: '/processo',
-    PROCESSO_POR_ID: (id: string) => `/processo/${id}`,
   };
 
-  // Retorna a URL base da API (host) definida nas variáveis de ambiente
+  // Retorna a URL base da API (host)
   get ENV_HOST() {
     return process.env.NEXT_PUBLIC_HOST_BACK;
   }
@@ -36,23 +35,6 @@ class APIBack {
     } catch (error) {
       console.error('Erro ao buscar processos:', error);
       return [];
-    }
-  }
-
-  /**
-   * Busca um processo específico pelo seu ID.
-   * @param {string} id - ID do processo.
-   * @returns {Promise<any | null>} Dados do processo ou null em caso de erro.
-   */
-  async getProcessById(id: string) {
-    try {
-      const res = await fetch(this.ENV_HOST + this.ROTAS.PROCESSO_POR_ID(id), {
-        headers: this.HEADERS,
-      });
-      return await res.json();
-    } catch (error) {
-      console.error('Erro ao buscar processo:', error);
-      return null;
     }
   }
 }
