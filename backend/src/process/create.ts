@@ -9,6 +9,7 @@ import { Request, Response } from "express";
  * @returns {Promise<void>} - Retorna uma Promise que resolve sem valor, enviando a resposta HTTP.
  *
  * @throws Retorna status 400 caso os dados estejam ausentes ou incorretos.
+ * @throws Retorna status 409 caso já exista um processo com o mesmo nome.
  * @throws Retorna status 500 em caso de erro interno ao salvar o processo.
  */
 export default async function createProcess(req: Request, res: Response): Promise<void> {
@@ -20,6 +21,16 @@ export default async function createProcess(req: Request, res: Response): Promis
             return;
         }
 
+        // Retorna o id do processo no db caso já haver um document com o mesmo nome
+        const existingProcess = await Processo.findOne({ process_name });
+        if (existingProcess) {
+            res.status(409).json({ 
+                error: 'Já existe um processo com esse nome.',
+                id: existingProcess.id
+             });
+            return;
+        }
+
         const novoProcesso = new Processo({
             system_id,
             process_name,
@@ -27,7 +38,7 @@ export default async function createProcess(req: Request, res: Response): Promis
         });
 
         const processoSalvo = await novoProcesso.save();
-        
+
         res.status(200).json({
             id: processoSalvo.id,
             message: 'Processo criado com sucesso',
@@ -35,6 +46,6 @@ export default async function createProcess(req: Request, res: Response): Promis
         });
 
     } catch (error: any) {
-        res.status(500).json({ error: `Erro ao criar processo: ${error}` });
+        res.status(500).json({ error: `Erro ao criar processo: ${error.message}` });
     }
 }

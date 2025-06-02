@@ -31,15 +31,25 @@ export default function Process({ processo }: Props): JSX.Element {
 
       const diffInMs = finalDate.getTime() - inicialDate.getTime();
 
-      const hours = Math.floor(diffInMs / (1000 * 60 * 60));
+      // Será mostrado a quantidade de dias, horas, minutos e segundos
+      const days = Math.floor(diffInMs / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diffInMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       const minutes = Math.floor((diffInMs % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((diffInMs % (1000 * 60)) / 1000);
 
-      return [
+      let formatted = '';
+
+      if (days > 0) {
+        formatted += `${days}d `;
+      }
+
+      formatted += [
         String(hours).padStart(2, '0'),
         String(minutes).padStart(2, '0'),
         String(seconds).padStart(2, '0')
       ].join(':');
+
+      return formatted;
     }
 
     return 'N/F';
